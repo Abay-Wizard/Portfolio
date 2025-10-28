@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menu,setMenu] =useState('home')
 
   return (
     <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/70 backdrop-blur-md text-gray-900 dark:text-gray-100 shadow-md">
@@ -19,26 +20,26 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden sm:flex gap-8 font-medium">
-          <li>
+          <li onClick={()=>setMenu('home')} className={menu ==='home'? `text-blue-500`:''}>
             <Link
               to="/"
-              className="hover:text-blue-500 transition-colors duration-300"
+
             >
               Home
             </Link>
           </li>
-          <li>
+          <li onClick={()=>setMenu('about')} className={menu ==='about'? `text-blue-500`:''}>
             <Link
               to="/about"
-              className="hover:text-blue-500 transition-colors duration-300"
+              
             >
               About
             </Link>
           </li>
-          <li>
+          <li onClick={()=>setMenu('contact')} className={menu ==='contact'? `text-blue-500`:''}>
             <Link
               to="/contact"
-              className="hover:text-blue-500 transition-colors duration-300"
+              
             >
               Contact
             </Link>
@@ -47,7 +48,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle Button */}
         <button
-          className="sm:hidden text-gray-900 dark:text-gray-100"
+          className="sm:hidden cursor-pointer text-gray-900 dark:text-gray-100"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -60,7 +61,7 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="sm:hidden bg-white/90 dark:bg-gray-800/90 border-t border-gray-300 dark:border-gray-700 backdrop-blur-md"
+          className="sm:hidden bg-white/80 dark:bg-gray-800/90 border-t border-gray-300 dark:border-gray-700 backdrop-blur-md"
         >
           <ul className="flex flex-col items-center space-y-4 py-4">
             <li>
