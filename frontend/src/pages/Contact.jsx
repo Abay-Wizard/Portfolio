@@ -3,7 +3,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const Contact = () => {
-  const url = 'http://localhost:5000';
+  const url = 'https://portfolio-dm5d.onrender.com';
   const [data, setData] = useState({
     name: '',
     email: '',

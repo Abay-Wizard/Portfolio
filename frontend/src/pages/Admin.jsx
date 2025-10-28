@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const Admin = () => {
-  const url = "http://localhost:5000";
+  const url = "https://portfolio-dm5d.onrender.com";
   const [messages, setMessages] = useState([]);
 
   const handleDelete = async (id) => {
