@@ -56,7 +56,7 @@ const Hero = () => {
       {/* Right Side */}
       <div className="md:flex-1 mt-8 md:mt-0">
         <p className="text-gray-800 dark:text-gray-300 text-base md:text-lg leading-relaxed md:leading-loose max-w-xl text-justify md:text-left">
-          I’m a passionate full-stack software developer with over a year
+          I’m a result-driven full-stack software developer with over a year
           of hands-on experience building scalable REST APIs, real-time chat
           applications, and secure payment integrations. I focus on delivering
           elegant, efficient, and reliable end-to-end solutions that combine
