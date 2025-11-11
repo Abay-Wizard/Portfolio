@@ -20,7 +20,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden sm:flex gap-8 font-medium">
-          <li onClick={()=>setMenu('home')} className={menu ==='home'? `text-blue-500`:''}>
+          <li onClick={()=>setMenu('home')} className={menu ==='home'? `text-purple-500`:''}>
             <Link
               to="/"
 
@@ -28,7 +28,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li onClick={()=>setMenu('about')} className={menu ==='about'? `text-blue-500`:''}>
+          <li onClick={()=>setMenu('about')} className={menu ==='about'? `text-purple-500`:''}>
             <Link
               to="/about"
               
@@ -36,7 +36,7 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          <li onClick={()=>setMenu('contact')} className={menu ==='contact'? `text-blue-500`:''}>
+          <li onClick={()=>setMenu('contact')} className={menu ==='contact'? `text-purple-500`:''}>
             <Link
               to="/contact"
               

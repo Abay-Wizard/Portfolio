@@ -6,7 +6,7 @@ const About = () => {
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
       
       {/* Image Section */}
-      <div className="relative w-64 h-64 md:w-80 md:h-80 mb-8 md:mb-0 md:mr-12 flex-shrink-0">
+      <div className="relative w-64 h-64 md:w-80 md:h-80 mb-8 md:mb-0 md:mr-12 shrink-0">
         {/* Blurred background */}
         <div
           className="absolute inset-0 rounded-full bg-cover bg-center filter blur-lg"
