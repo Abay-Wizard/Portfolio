@@ -1,120 +1,99 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { Github, ExternalLink } from "lucide-react";
 import goShopNew from "../assets/goShopNew.png";
 import NileChat from "../assets/NileChat.png";
 import GlobalBites from "../assets/GlobalBites.png";
-import { Github } from "lucide-react";
+
+const projects = [
+  {
+    title: "GoShop",
+    image: goShopNew,
+    description:
+      "GoShop is an e-commerce site that lets users shop easily from their devices. I built this to explore backend systems like payment integration, order tracking, and database management.",
+    demo: "https://e-commerce-project-eight-liart.vercel.app",
+    code: "https://github.com/Abay-Wizard/e-commerce-project",
+  },
+  {
+    title: "NileChat",
+    image: NileChat,
+    description:
+      "NileChat is a real-time chat application built with Node.js, Express, React, MongoDB, and Socket.io. It deepened my understanding of real-time communication and event handling.",
+    demo: "https://real-time-chat-app-fawn-two.vercel.app",
+    code: "https://github.com/Abay-Wizard/Real-time-chat-app",
+  },
+  {
+    title: "GlobalBites",
+    image: GlobalBites,
+    description:
+      "GlobalBites is an online food ordering and delivery platform inspired by the lack of digital systems in local restaurants. It focuses on smooth UI, efficient ordering, and responsive design.",
+    demo: "https://fooddeliveryapp-two.vercel.app",
+    code: "https://github.com/Abay-Wizard/Food-delivery-app",
+  },
+];
 
 const Projects = () => {
   return (
-    <section className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 pt-16 px-6 md:px-16 pb-4">
-      <h1 className="text-4xl font-extrabold text-center text-gray-900 dark:text-white mb-12">
-        Projects
-      </h1>
+    <section className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 md:px-16">
+      {/* Header */}
+      <motion.h1
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-4xl sm:text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-14"
+      >
+        My <span className="text-purple-600">Projects</span>
+      </motion.h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* GoShop */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col transition-transform transform hover:scale-105">
-          <img
-            className="w-full h-48 object-cover"
-            src={goShopNew}
-            alt="GoShop"
-          />
-          <div className="p-6 flex flex-col flex-1">
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              GoShop is an e-commerce site where the people can do shopping using just their devices.
-              This project enhanced my understanding of backend logics like payment integration, order tracking,
-              and database management.
-            </p>
-            <div className="flex items-center justify-between gap-3">
-              <a
-                href="https://e-commerce-project-eight-liart.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold transition"
-              >
-                Demo ↗
-              </a>
-              <a
-                href="https://github.com/Abay-Wizard/e-commerce-project"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg transition flex items-center justify-center gap-2"
-              >
-                <Github className="w-5 h-5" />
-                Code
-              </a>
+      {/* Project Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+          >
+            {/* Image with Overlay */}
+            <div className="relative w-full h-52 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 hover:bg-purple-700 transition"
+                >
+                  <ExternalLink className="w-4 h-4" /> Demo
+                </a>
+                <a
+                  href={project.code}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 hover:bg-gray-900 transition"
+                >
+                  <Github className="w-4 h-4" /> Code
+                </a>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* NileChat */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col transition-transform transform hover:scale-105">
-          <img
-            className="w-full h-48 object-cover"
-            src={NileChat}
-            alt="NileChat"
-          />
-          <div className="p-6 flex flex-col flex-1">
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              NileChat is a realtime chatting/communication app. I built it using Node.js,
-              Express.js, React.js, MongoDB and Socket.io. The project helped me understand realtime events,
-              and how to handle them using Socket.io.
-            </p>
-            <div className="flex items-center justify-between gap-3">
-              <a
-                href="https://real-time-chat-app-fawn-two.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold transition"
-              >
-                Demo ↗
-              </a>
-              <a
-                href="https://github.com/Abay-Wizard/Real-time-chat-app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg transition flex items-center justify-center gap-2"
-              >
-                <Github className="w-5 h-5" />
-                Code
-              </a>
+            {/* Description */}
+            <div className="p-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                {project.title}
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+                {project.description}
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* GlobalBites */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col transition-transform transform hover:scale-105">
-          <img
-            className="w-full h-48 object-cover"
-            src={GlobalBites}
-            alt="GlobalBites"
-          />
-          <div className="p-6 flex flex-col flex-1">
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              GlobalBites is an online food order and delivery system. Most Restaurants in Kigali don't have
-              this kind of websites and that's what inspired me to build GlobalBites.
-            </p>
-            <div className="flex items-center justify-between gap-3">
-              <a
-                href="https://fooddeliveryapp-two.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold transition"
-              >
-                Demo ↗
-              </a>
-              <a
-                href="https://github.com/Abay-Wizard/Food-delivery-app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg transition flex items-center justify-center gap-2"
-              >
-                <Github className="w-5 h-5" />
-                Code
-              </a>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
