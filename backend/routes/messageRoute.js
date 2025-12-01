@@ -1,9 +1,10 @@
+import {Router} from 'express'
 import { getMessages,sendMessage,deleteMessage } from "../controllers/messageController.js";
-import express from 'express'
+import authMiddleware from '../middleware/authMiddleware.js';
 
-const router =express.Router()
-router.post('/send',sendMessage)
-router.get('/get',getMessages)
-router.delete('/delete/:id',deleteMessage)
+const messageRouter =Router()
+messageRouter.post('/send',sendMessage)
+messageRouter.get('/get',authMiddleware,getMessages)
+messageRouter.delete('/delete/:id',authMiddleware,deleteMessage)
 
-export default router
+export default messageRouter
