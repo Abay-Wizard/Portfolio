@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Trash2, Mail, User } from "lucide-react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import axiosInstance from "../../lib/axios";
@@ -35,7 +34,6 @@ const Admin = () => {
 
   return (
     <section className="min-h-screen bg-linear-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-10 px-6 md:px-12 transition-colors duration-300">
-      {/* Header */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,7 +43,6 @@ const Admin = () => {
         Messages Dashboard
       </motion.h1>
 
-      {/* Empty State */}
       {messages.length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -77,7 +74,6 @@ const Admin = () => {
                 transition={{ duration: 0.4 }}
                 className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
-                {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h2 className="text-xl font-semibold text-gray-800 dark:text-white flex items-center gap-2">
@@ -99,7 +95,6 @@ const Admin = () => {
                   </motion.button>
                 </div>
 
-                {/* Content */}
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 flex items-center gap-2">
                   <Mail className="w-4 h-4 text-purple-500" />
                   {message.email}
