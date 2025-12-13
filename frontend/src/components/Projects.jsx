@@ -34,8 +34,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section className="bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 md:px-16">
-      {/* Header */}
+    <section className="bg-linear-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 md:px-16">
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,7 +44,6 @@ const Projects = () => {
         My <span className="text-purple-600">Projects</span>
       </motion.h1>
 
-      {/* Project Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
@@ -56,7 +54,6 @@ const Projects = () => {
             viewport={{ once: true }}
             className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
           >
-            {/* Image with Overlay */}
             <div className="relative w-full h-52 overflow-hidden">
               <img
                 src={project.image}
@@ -83,7 +80,6 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Description */}
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 {project.title}

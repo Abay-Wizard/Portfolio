@@ -32,9 +32,12 @@ const updateBook=async(req,res)=>{
     let finalImage;
     try {
         const book=await Book.findById(id)
+        if(!book){
+            return res.status(404).json({success:false,message:'Book not found!'})
+        }
         const existingImage=book.coverImage ||null
-        if(!coverImage.startswith('http')){
-            const uploadResponse=await cloudinary.uploader.upload(coverImage)
+        if(!coverImage.startsWith('http')){
+            const uploadResponse=await cloudinary.uploader.upload(coverImage,{timeout:60000})
             finalImage=uploadResponse.secure_url
         }
         else{
@@ -55,10 +58,10 @@ const updateBook=async(req,res)=>{
     }
 }
 
-const getBooks=async(res)=>{
+const getBooks=async(req,res)=>{
     try {
         const books=await Book.find()
-        if(!books){
+        if(!books.length){
             return res.status(404).json({success:false,message:'No books found!'})
         }
         res.status(200).json({success:true,message:'Books fetched successfully!',data:books})
@@ -94,7 +97,7 @@ const deleteBook=async(req,res)=>{
             const publicId=removedImage.split('/').slice(-1)[0].split('.')[0]
             await cloudinary.uploader.destroy(`books/${publicId}`)
         }
-        await book.deleteOne()
+        await Book.findByIdAndDelete(id)
         res.status(201).json({success:true,message:'Book deleted successfully!'})
     } catch (error) {
         console.log(error)

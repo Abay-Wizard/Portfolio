@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import portfolioPic from "../assets/portfolioPic.jpg";
+import HomePro from "../assets/HomePro.jpg";
 
-// Typing animation for role text
+
 const TypingTextLoop = ({ text, speed = 120, pause = 1500, className }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -31,8 +31,6 @@ const Hero = () => {
   return (
     <section className="relative w-full overflow-hidden bg-linear-to-br from-purple-50 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-10 lg:px-16 py-16 md:py-24 gap-12">
-
-        {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -81,7 +79,6 @@ const Hero = () => {
 
         </motion.div>
 
-        {/* RIGHT IMAGE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -89,7 +86,7 @@ const Hero = () => {
           className="flex justify-center flex-1"
         >
           <img
-            src={portfolioPic}
+            src={HomePro}
             alt="Abay M. Tessema"
             className="rounded-3xl w-64 sm:w-72 md:w-80 lg:w-96 h-64 sm:h-72 md:h-80 lg:h-96 object-cover shadow-xl border-4 border-purple-300 dark:border-purple-500"
           />

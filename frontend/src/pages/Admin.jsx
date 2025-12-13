@@ -1,120 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { Trash2, Mail, User } from "lucide-react";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { motion, AnimatePresence } from "framer-motion";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Upload, Eye, BookPlus, Library, MessagesSquare } from 'lucide-react'
 
 const Admin = () => {
-  const url = "https://portfolio-dm5d.onrender.com";
-  const [messages, setMessages] = useState([]);
-
-  const handleDelete = async (id) => {
-    try {
-      const res = await axios.delete(`${url}/api/message/delete/${id}`);
-      if (res.data.success) {
-        toast.success(res.data.message);
-        setMessages((prev) => prev.filter((msg) => msg._id !== id)); // instant UI update
-      }
-    } catch (error) {
-      console.log(error?.response?.data?.message);
-      toast.error("Failed to delete message");
-    }
-  };
-
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const res = await axios.get(`${url}/api/message/get`);
-        if (res.data.success) setMessages(res.data.data);
-      } catch (error) {
-        console.log("Error fetching messages:", error);
-      }
-    };
-    fetchMessages();
-  }, [url]);
+  const tabs = [
+    {
+      label: "Post Blogs",
+      icon: <Upload className="w-7 h-7 text-blue-500" />,
+      to: "/admin/blogs/create",
+    },
+    {
+      label: "See Blogs",
+      icon: <Eye className="w-7 h-7 text-green-500" />,
+      to: "/admin/blogs",
+    },
+    {
+      label: "Add Books",
+      icon: <BookPlus className="w-7 h-7 text-purple-500" />,
+      to: "/admin/books/create",
+    },
+    {
+      label: "Go to Books",
+      icon: <Library className="w-7 h-7 text-orange-500" />,
+      to: "/admin/books",
+    },
+    {
+      label: "Check Incoming Messages",
+      icon: <MessagesSquare className="w-7 h-7 text-red-500" />,
+      to: "/admin/messages",
+    },
+  ]
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-10 px-6 md:px-12 transition-colors duration-300">
-      {/* Header */}
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-4xl font-extrabold text-center text-gray-900 dark:text-white mb-10"
-      >
-        Messages Dashboard
-      </motion.h1>
+    <div className="w-full min-h-screen bg-gray-50 py-16 px-4">
+      <h1 className="text-2xl md:text-3xl font-semibold text-center mb-10 text-gray-800">
+        Navigate admin sections using the tabs below
+      </h1>
 
-      {/* Empty State */}
-      {messages.length === 0 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col items-center justify-center text-center text-gray-500 dark:text-gray-400 mt-20"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/5356/5356190.png"
-            alt="No messages"
-            className="w-64 h-64 mb-6 opacity-80"
-          />
-          <p className="text-lg font-medium">
-            No messages yet — your inbox is peaceful 😄
-          </p>
-        </motion.div>
-      ) : (
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence>
-            {messages.map((message) => (
-              <motion.div
-                key={message._id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.4 }}
-                className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h2 className="text-xl font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-                      <User className="w-5 h-5 text-purple-500" />
-                      {message.name}
-                    </h2>
-                    <span className="text-sm text-gray-400">
-                      {new Date(message.createdAt).toLocaleDateString()}
-                    </span>
-                  </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {tabs.map((item, index) => (
+          <Link
+            key={index}
+            to={item.to}
+            className="bg-white shadow-md border border-gray-100 rounded-xl p-6 flex flex-col items-center gap-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+          >
+            <div className="p-3 bg-gray-100 rounded-full">
+              {item.icon}
+            </div>
 
-                  <motion.button
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => handleDelete(message._id)}
-                    className="p-2 cursor-pointer rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 text-red-500 hover:text-red-600 transition"
-                    title="Delete message"
-                  >
-                    <Trash2 size={20} />
-                  </motion.button>
-                </div>
+            <h1 className="text-lg font-medium text-gray-700 text-center">
+              {item.label}
+            </h1>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
 
-                {/* Content */}
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-purple-500" />
-                  {message.email}
-                </p>
-
-                <p className="text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-line border-t border-gray-200 dark:border-gray-700 pt-3">
-                  {message.message}
-                </p>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      )}
-    </section>
-  );
-};
-
-export default Admin;
+export default Admin
