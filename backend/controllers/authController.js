@@ -11,7 +11,7 @@ const loginAdmin=async(req,res)=>{
        if(!isMatch){
         return res.status(401).json({success:false,message:'Invalid password!'})
        }
-      const token= await generateToken()
+      const token= await generateToken(res)
        res.status(200).json({success:true,message:'Login successful!',data:{token:token}})
     } catch (error) {
         console.log(error)
