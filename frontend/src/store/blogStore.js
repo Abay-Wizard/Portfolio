@@ -88,7 +88,7 @@ export const blogStore=create((set,get)=>({
             const res=await axiosInstance.post('/admin/login',data)
             if(res.data.success){
                 toast.success(res.data.message)
-                localStorage.setItem('token',res.data.data.token)
+                localStorage.setItem('user',res.data.data)
                 return true
             }
             else{

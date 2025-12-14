@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const token=localStorage.getItem('token')
+  const user=localStorage.getItem('user')
   const location = useLocation();
 
   const links = [
@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: "Hire Me", path: "/contact" },
     { name: "Blogs", path: "/blogs" },
     { name: "Books", path: "/books" },
-    { name: "Admin", path: token ? "/admin" :"/admin/login"}
+    { name: "Admin", path: user ? "/admin" :"/admin/login"}
   ];
 
   return (
