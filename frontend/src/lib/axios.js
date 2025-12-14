@@ -1,6 +1,6 @@
 import axios from 'axios'
 const axiosInstance=axios.create({
-    baseURL:'http://localhost:5000/api',  
+    baseURL:'https://portabay.onrender.com/api',  //https://portabay.onrender.com
     withCredentials:true
 })
 

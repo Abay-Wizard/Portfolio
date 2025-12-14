@@ -5,7 +5,7 @@ const generateToken=async(res)=>{
         maxAge:60*60*24*7*1000,
         secure:false,
         httpOnly:true,
-        samesite:'lax'
+        sameSite:'lax'
     })
 
     return token
