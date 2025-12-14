@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt'
+import { config } from 'dotenv'
+config()
 import generateToken from '../lib/genToken.js'
 const loginAdmin=async(req,res)=>{
     const {code}=req.body
@@ -7,7 +9,7 @@ const loginAdmin=async(req,res)=>{
         if(!code){
           return res.status(401).json({success:false,message:'Password required!'})
         }
-       const isMatch=bcrypt.compare(code,secret)
+       const isMatch=await bcrypt.compare(code,secret)
        if(!isMatch){
         return res.status(401).json({success:false,message:'Invalid password!'})
        }
