@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const authMiddleware = async (_, res, next) => {
-  const token = localStorage.getItem('token')
+const authMiddleware = async (req, res, next) => {
+  const token = req.cookies.jwt;
   if (!token) {
     return res.status(401).json({ success: false, message: "No token is provided!" });
   }
