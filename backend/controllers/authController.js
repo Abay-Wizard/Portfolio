@@ -7,7 +7,7 @@ const loginAdmin=async(req,res)=>{
         if(!code){
           return res.status(401).json({success:false,message:'Password required!'})
         }
-       const isMatch=await bcrypt.compare(code,secret)
+       const isMatch=bcrypt.compare(code,secret)
        if(!isMatch){
         return res.status(401).json({success:false,message:'Invalid password!'})
        }
