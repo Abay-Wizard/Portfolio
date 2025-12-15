@@ -53,6 +53,8 @@ export const blogStore=create((set,get)=>({
         }
     },
     fetchBlogs:async()=>{
+        const {blogs,isFetchingBlogs}=get()
+        if(blogs.length > 0 || isFetchingBlogs) return
         set({isFetchingBlogs:true})
         try {
             const res=await axiosInstance.get('/blog/blogs')

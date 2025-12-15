@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { bookStore } from '../store/bookStore'
 import dateConverter from '../lib/dateConverter'
+import BooksSkeleton from '../components/BooksSkeleton'
 
 const Books = () => {
   const { fetchBooks, isFetchingBooks, books } = bookStore()
@@ -17,9 +18,7 @@ const Books = () => {
 
   if (isFetchingBooks) {
     return (
-      <h1 className="text-purple-500 text-3xl text-center py-20">
-        Loading Books...
-      </h1>
+      <BooksSkeleton/>
     )
   }
 

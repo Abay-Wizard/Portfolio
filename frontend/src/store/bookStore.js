@@ -39,6 +39,8 @@ export const bookStore=create((set,get)=>({
         }
     },
     fetchBooks:async()=>{
+        const {books,isFetchingBooks}=get()
+        if(books.length > 0 || isFetchingBooks) return 
         set({isFetchingBooks:true})
         try {
             const res=await axiosInstance.get('/book/books')

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { blogStore } from '../store/blogStore'
 import dateConverter from '../lib/dateConverter'
 import { motion } from 'framer-motion'
+import BlogsSkeleton from '../components/BlogsSkeleton'
 
 const Blogs = () => {
   const { fetchBlogs, isFetchingBlogs, blogs } = blogStore()
@@ -12,9 +13,7 @@ const Blogs = () => {
 
   if (isFetchingBlogs) {
     return (
-      <h1 className="text-purple-500 text-4xl font-bold text-center py-20">
-        Loading blogs...
-      </h1>
+      <BlogsSkeleton/>
     )
   }
 
