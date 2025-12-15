@@ -12,7 +12,7 @@ import bookRouter from './routes/bookRoute.js'
 dotenv.config()
 const app=express()
 app.use(cors({
-    origin:'http://localhost:5173',  //https://abaytessema.vercel.app
+    origin:'https://abaytessema.vercel.app',  //
     credentials:true  
 }))
 app.use(express.json({limit:'50mb'}))
