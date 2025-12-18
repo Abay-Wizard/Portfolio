@@ -36,8 +36,8 @@ const loginUser=async(req,res)=>{
         if(!isMatch){
             return res.status(403).json({success:false,message:'Invalid email or password!'})
         }
-        await generateToken(user._id,res)
-        res.status(200).json({success:true,message:'Login successfull!',data:user})
+        const token=await generateToken(user._id,res)
+        res.status(200).json({success:true,message:'Login successfull!',token:token})
 
 
     } catch (error) {

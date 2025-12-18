@@ -13,11 +13,14 @@ import Books from "./pages/Books";
 import Blogs from "./pages/Blogs";
 import Messages from "./pages/admin/Messages";
 import AdminBlogs from "./pages/admin/AdminBlogs";
+import AdminProjects from "./pages/admin/AdminProjects";
 import AdminBooks from "./pages/admin/AdminBooks";
 import PostBlogs from "./pages/admin/PostBlogs";
 import PostBooks from "./pages/admin/PostBooks";
+import PostProjects from "./pages/admin/PostProjects";
 import UpdateBlog from "./pages/admin/UpdateBlog";
 import UpdateBook from "./pages/admin/UpdateBook";
+import UpdateProject from "./pages/admin/UpdateProject";
 
 function App() {
   const location = useLocation();
@@ -120,10 +123,26 @@ function App() {
               }
             />
             <Route
+              path="/admin/projects"
+              element={
+                <motion.div {...pageTransition}>
+                  <AdminProjects />
+                </motion.div>
+              }
+            />
+            <Route
               path="/admin/blogs/create"
               element={
                 <motion.div {...pageTransition}>
                   <PostBlogs />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/admin/projects/create"
+              element={
+                <motion.div {...pageTransition}>
+                  <PostProjects />
                 </motion.div>
               }
             />
@@ -140,6 +159,14 @@ function App() {
               element={
                 <motion.div {...pageTransition}>
                   <UpdateBook />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/admin/projects/update/:id"
+              element={
+                <motion.div {...pageTransition}>
+                  <UpdateProject />
                 </motion.div>
               }
             />

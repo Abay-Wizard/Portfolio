@@ -9,6 +9,12 @@ const projectSchema=new mongoose.Schema({
     },
     coverImage:{
         type:String
+    },
+    githubLink:{
+        type:String,
+    },
+    demoLink:{
+        type:String
     }
 },{timestamps:true})
 

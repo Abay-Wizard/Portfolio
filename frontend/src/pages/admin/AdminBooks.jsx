@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { Edit2, Trash } from 'lucide-react'
+import { Edit, Trash2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { bookStore } from '../../store/bookStore'
+import BooksSkeleton from '../../components/BooksSkeleton'
 
 const AdminBooks = () => {
   const { fetchBooks, isFetchingBooks, books, deleteBook } = bookStore()
@@ -24,9 +25,7 @@ const AdminBooks = () => {
 
   if (isFetchingBooks) {
     return (
-      <h1 className='text-purple-500 text-3xl text-center py-20'>
-        Loading Books...
-      </h1>
+      <BooksSkeleton/>
     )
   }
 
@@ -47,14 +46,14 @@ const AdminBooks = () => {
                 onClick={() => navigate(`/admin/books/update/${book._id}`)}
                 className="p-2 rounded-lg bg-purple-100 hover:bg-purple-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition"
               >
-                <Edit2 className="text-purple-600" />
+                <Edit className="text-purple-600" />
               </button>
 
               <button
                 onClick={() => handleDelete(book._id)}
                 className="p-2 rounded-lg bg-red-100 hover:bg-red-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition"
               >
-                <Trash className="text-red-600" />
+                <Trash2 className="text-red-600" />
               </button>
             </div>
 

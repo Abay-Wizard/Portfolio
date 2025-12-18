@@ -7,12 +7,13 @@ import messageRouter from './routes/messageRoute.js'
 import authRouter from './routes/authRoute.js'
 import blogRouter from './routes/blogRoute.js'
 import bookRouter from './routes/bookRoute.js'
+import projectRouter from './routes/projectRoute.js'
 
 
 dotenv.config()
 const app=express()
 app.use(cors({
-    origin:'https://abaytessema.vercel.app',  //
+    origin:'https://abaytessema.vercel.app',  //https://abaytessema.vercel.app
     credentials:true  
 }))
 app.use(express.json({limit:'50mb'}))
@@ -21,6 +22,7 @@ app.use('/api/message',messageRouter)
 app.use('/api/admin',authRouter)
 app.use('/api/blog',blogRouter)
 app.use('/api/book',bookRouter)
+app.use('/api/project',projectRouter)
 
 
 
