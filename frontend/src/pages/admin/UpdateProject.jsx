@@ -20,14 +20,16 @@ useEffect(()=>{
 },[id])
 
 useEffect(()=>{
-   setData({
-    projectName:project.projectName||'',
-    description:project.description||'',
-    coverImage:project.coverImage||null,
-    githubLink:project.githubLink||'',
-    demoLink:project.demoLink||''
+   if(project){
+    setData({
+      projectName:project.projectName||'',
+      description:project.description||'',
+      coverImage:project.coverImage||null,
+      githubLink:project.githubLink||'',
+      demoLink:project.demoLink||''
    })
-},[])
+   }
+},[project])
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
