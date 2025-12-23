@@ -3,7 +3,7 @@ import { Edit, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { projectStore } from "../../store/projectStore";
 import dateConverter from "../../lib/dateConverter";
-import ProjectsSkeleton from '../../components/ProjectsSkeleton'
+import AdminProjectsSkeleton from '../../components/AdminProjectsSkeleton'
 
 const AdminProjects = () => {
   const {
@@ -31,7 +31,7 @@ const AdminProjects = () => {
 
   if (isFetchingProjects) {
     return (
-      <ProjectsSkeleton/>
+      <AdminProjectsSkeleton/>
     );
   }
 

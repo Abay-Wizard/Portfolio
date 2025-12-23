@@ -4,6 +4,9 @@ import { Github, ExternalLink } from "lucide-react";
 import { projectStore } from "../store/projectStore";
 import ProjectsSkeleton from "./ProjectsSkeleton";
 
+const isMobileDevice = () =>
+  window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
 const Projects = () => {
   const { fetchProjects, isFetchingProjects, projects } = projectStore();
 
@@ -34,7 +37,12 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: index * 0.08 }}
             viewport={{ once: true }}
-            className="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-md hover:shadow-xl hover:bg-purple-50 transition-all"
+            onClick={() => {
+              if (isMobileDevice() && project.demoLink) {
+                window.open(project.demoLink, "_blank", "noopener,noreferrer");
+              }
+            }}
+            className="group cursor-pointer bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-md hover:shadow-xl transition-all"
           >
             <div className="relative h-52 w-full overflow-hidden">
               <img
@@ -43,13 +51,14 @@ const Projects = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 pointer-events-none sm:pointer-events-auto">
                 {project.demoLink && (
                   <a
                     href={project.demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-semibold hover:bg-purple-700 transition"
+                    onClick={(e) => e.stopPropagation()}
+                    className="pointer-events-auto flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-semibold hover:bg-purple-700 transition"
                   >
                     <ExternalLink size={16} />
                     Demo
@@ -61,7 +70,8 @@ const Projects = () => {
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-black transition"
+                    onClick={(e) => e.stopPropagation()}
+                    className="pointer-events-auto flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-black transition"
                   >
                     <Github size={16} />
                     Code
